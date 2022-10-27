@@ -125,3 +125,42 @@ Console.WriteLine();
 double result = Subtraction(ourArray);
 Console.WriteLine($"The difference between max and min number is {result}");
 */
+int[,] CreateRandom2dArray()
+{
+    Console.Write("Input a number of rows: ");
+    int rows = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Input a number of columns: ");
+    int columns = Convert.ToInt32(Console.ReadLine());
+    
+    int[,] array = new int[rows, columns];
+
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < columns; j++)
+            array[i, j] = new Random().Next(1, 10);
+    return array;
+}
+
+void Show2dArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        Console.Write(array[i, j] + " ");
+        Console.WriteLine();
+    }
+}
+void FindElectedElement(int[,] array)
+{
+    Console.WriteLine("Input a row* index of your number: ");
+    int i = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine("Input a column* index of your number: ");
+    int j = Convert.ToInt32(Console.ReadLine());
+
+    if ((i >= 0 && i < array.GetLength(0)) && (j >= 0 && j < array.GetLength(1)))
+    Console.WriteLine($"There is the number with your indexes [{i}], [{j}] - {array[i, j]}");
+    else
+    Console.WriteLine($"The number with your indexes does not exist. Maybe we can find it beyond the created array...");
+}
+int[,] myArray = CreateRandom2dArray();
+Show2dArray(myArray);
+FindElectedElement(myArray);
